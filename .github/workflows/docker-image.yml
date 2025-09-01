@@ -13,6 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Chekout code
+      uses: action/checkout@v4
+      with: 
+        fetch-depth: 0
+     
+    # me logueo en docker hubs
+    - name: Docker Logins
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USER -P $DOCKER_PASSWORD
+      # creo las imagenes
+    - name: build Docker Image  
+      run: |
+        docker build -t pucho1/grahpql-actions:0.0.2 .
+        docker  build -t pucho1/grahpql-actions:latest .
+      # subo las imagenes
+    - name: push imagen
+      run: | 
+        docker push -t pucho1/grahpql-actions:0.0.2
+        docker push -t pucho1/grahpql-actions:latest
+        
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
