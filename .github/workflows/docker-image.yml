@@ -23,7 +23,7 @@ jobs:
       env:
         DOCKER_SECRET: ${{ secrets.DOCKER_SECRET }}
         PASSWORD_DOCKER: ${{ secrets.PASSWORD_DOCKER }}
-      run: docker login -u $DOCKER_SECRET -P $PASSWORD_DOCKER
+      run: docker login -u $DOCKER_SECRET -p $PASSWORD_DOCKER
       # creo las imagenes
     - name: build Docker Image  
       run: |
