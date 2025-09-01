@@ -21,9 +21,9 @@ jobs:
     # me logueo en docker hubs
     - name: Docker Logins
       env:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: docker login -u $DOCKER_USER -P $DOCKER_PASSWORD
+        DOCKER_USER: ${{ secrets.DOCKER_SECRET }}
+        DOCKER_PASSWORD: ${{ secrets.PASSWORD_DOCKER }}
+      run: docker login -u $DOCKER_SECRET -P $PASSWORD_DOCKER
       # creo las imagenes
     - name: build Docker Image  
       run: |
