@@ -32,8 +32,8 @@ jobs:
       # subo las imagenes
     - name: push imagen
       run: | 
-        docker push -t pucho1/grahpql-actions:0.0.2
-        docker push -t pucho1/grahpql-actions:latest
+        docker push pucho1/grahpql-actions:0.0.2
+        docker push pucho1/grahpql-actions:latest
         
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
