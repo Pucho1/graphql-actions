@@ -29,14 +29,14 @@ jobs:
       env: 
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-        docker build -t pucho1/grahpql-actions:NEW_VERSION .
+        docker build -t pucho1/grahpql-actions:$NEW_VERSION .
         docker  build -t pucho1/grahpql-actions:latest .
       # subo las imagenes
     - name: push imagen
       env: 
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run: | 
-        docker push pucho1/grahpql-actions:NEW_VERSION
+        docker push pucho1/grahpql-actions:$NEW_VERSION
         docker push pucho1/grahpql-actions:latest
         
     # - name: Build the Docker image
