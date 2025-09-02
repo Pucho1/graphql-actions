@@ -25,14 +25,13 @@ jobs:
         major_pattern: "major:"
         minor_pattern: "feat:"
         format: "${major}.${minor}.${patch}-prerelease${increment}"
-        
+      id: version
+      
     # me logueo en docker hubs
     - name: Docker Logins
       env:
         DOCKER_SECRET: ${{ secrets.DOCKER_SECRET }}
         PASSWORD_DOCKER: ${{ secrets.PASSWORD_DOCKER }}
-        NEW_VERSION: ${{ steps.version.outputs.version }}
-       
       run: docker login -u $DOCKER_SECRET -p $PASSWORD_DOCKER
       
     # creo las imagenes
