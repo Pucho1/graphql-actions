@@ -25,14 +25,18 @@ jobs:
         PASSWORD_DOCKER: ${{ secrets.PASSWORD_DOCKER }}
       run: docker login -u $DOCKER_SECRET -p $PASSWORD_DOCKER
       # creo las imagenes
-    - name: build Docker Image  
+    - name: build Docker Image
+      env: 
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-        docker build -t pucho1/grahpql-actions:0.0.2 .
+        docker build -t pucho1/grahpql-actions:NEW_VERSION .
         docker  build -t pucho1/grahpql-actions:latest .
       # subo las imagenes
     - name: push imagen
+      env: 
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: | 
-        docker push pucho1/grahpql-actions:0.0.2
+        docker push pucho1/grahpql-actions:NEW_VERSION
         docker push pucho1/grahpql-actions:latest
         
     # - name: Build the Docker image
